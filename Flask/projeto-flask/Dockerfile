@@ -10,4 +10,4 @@ RUN if [ "$FLASK_ENV" = "dev" ] ; then pip install --no-cache-dir -r dev-require
 
 COPY ./src .
 
-CMD ["python3", "app.py"]
+CMD ["py", "app.py"]
