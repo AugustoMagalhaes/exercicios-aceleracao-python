@@ -1,17 +1,18 @@
 from bson import ObjectId
 from flask import Blueprint, jsonify, request
-# from src.models.joke_model import JokeModel
+from models.joke_model import JokeModel
 
-JokeModel = {}
-jokes_controller = Blueprint("jokes", __name__)
+jokes_controller = Blueprint("blueprint", __name__)
 
 
+# ---------
+# Métodos privados para serem reutilizados
 def _get_all_jokes():
     jokes = JokeModel.find()
     return [joke.to_dict() for joke in jokes]
 
 
-def _get_joke(id: str):
+def _get_joke(id):
     # ObjectId transforma uma string em ID do MongoDb
     return JokeModel.find_one({"_id": ObjectId(id)})
 
@@ -27,9 +28,7 @@ def joke_index():
 @jokes_controller.route("/random", methods=["GET"])
 def joke_random():
     joke = JokeModel.get_random()
-    if joke is None:
-        return jsonify({"error": "No jokes available"}), 404
-
+    # O Flask entende que o número após o jsonify, representa o Status HTTP
     return jsonify(joke.to_dict()), 200
 
 
@@ -41,28 +40,24 @@ def joke_post():
 
 
 @jokes_controller.route("/<id>", methods=["PUT"])
-def joke_update(id: str):
+def joke_update(id):
     joke = _get_joke(id)
-    # Exemplo de Validação
-    if joke is None:
-        return jsonify({"error": "Joke not found"}), 404
     joke.update(request.json)
     return jsonify(joke.to_dict()), 200
 
 
 @jokes_controller.route("/<id>", methods=["GET"])
-def joke_show(id: str):
+def joke_show(id):
     joke = _get_joke(id)
-    if joke is None:
-        return jsonify({"error": "Joke not found"}), 404
     return jsonify(joke.to_dict()), 200
 
 
 @jokes_controller.route("/<id>", methods=["DELETE"])
-def joke_delete(id: str):
+def joke_delete(id):
     joke = _get_joke(id)
+    # Exemplo de Validação
     if joke is None:
         return jsonify({"error": "Joke not found"}), 404
-
-    joke.delete()
-    return jsonify(joke.to_dict()), 204
+    else:
+        joke.delete()
+        return jsonify(joke.to_dict()), 204
