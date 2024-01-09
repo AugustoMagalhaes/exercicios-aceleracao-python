@@ -16,6 +16,9 @@
         <p>Olá! Bom dia, como você se chama?</p>
         <div class="send-box">
             <input type="text" name="username">
+            {% if username and greeting %}
+                <p>Olá {{ username|capitalize|trim }}! {{ greeting }}!</p>
+            {% endif %}
             <button type="submit" id="chat">Entrar</button>
         </div>
     </form>
