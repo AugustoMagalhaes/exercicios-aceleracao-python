@@ -1,6 +1,6 @@
 import random
-from db import db
-from abstract_model import AbstractModel
+from .db import db
+from .abstract_model import AbstractModel
 
 
 class JokeModel(AbstractModel):
