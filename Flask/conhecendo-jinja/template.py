@@ -1,9 +1,12 @@
 from jinja2 import Template
 
 
-TEMPLATE_STRING = "Eu sou um {{ nome }}!"
-template = Template(TEMPLATE_STRING)
+template_file = open('template.html').read()
+template = Template(template_file)
 
-output = template.render(nome='template')
+
+SAUDACAO = 'Eu sou um template HTML'
+
+output = template.render(saudacao=SAUDACAO)
 
 print(output)
