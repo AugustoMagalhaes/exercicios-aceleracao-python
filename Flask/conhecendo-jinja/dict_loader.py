@@ -1,4 +1,4 @@
-from jinja2 import BaseLoader
+from jinja2 import BaseLoader, Environment
 
 
 class DictLoader(BaseLoader):
@@ -10,3 +10,16 @@ class DictLoader(BaseLoader):
             source = self.templates[template]
             return source, None, lambda: False
         return None
+
+
+templates = {
+    'index.html': '<h1>Um template usando {{ nome }}!</h1>',
+    'about.html': '<p>Este é um exemplo de template Jinja2.</p>'
+}
+loader = DictLoader(templates)
+
+environment = Environment(loader=loader)
+
+template = environment.get_template('index.html')
+output = template.render(nome='BaseLoader')
+print(output)
