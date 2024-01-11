@@ -1,4 +1,0 @@
--r requirements.txt
-
-black==23.3.0
-flake8==4.0.1
