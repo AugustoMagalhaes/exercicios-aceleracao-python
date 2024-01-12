@@ -8,7 +8,7 @@
 <body>
     {% if username %}
         <div style="display: flex; justify-content: space-between; align-items: center; width: 200px;">
-        <p>Seja bem-vindo {{ username }}</p>
+        <p>Seja bem-vindo {{ username | safe}}</p>
         <button onclick="goBack()">Voltar</button>
         </div>
     {% else %}
