@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1</title>
+</head>
+<body>
+    {% if username %}
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 200px;">
+        <p>Seja bem-vindo {{ username }}</p>
+        <button onclick="goBack()">Voltar</button>
+        </div>
+    {% else %}
+        <form action="/" method="post">
+            <label for="username">Digite seu nome:</label>
+            <input type="text" id="username" name="username" required>
+            <button type="submit">Enviar</button>
+        </form>
+    {% endif %}
+</body>
+<script>
+    function goBack() {
+        fetch('/reset_username', { method: 'POST' })
+                .then((response) => {
+                    if (response.ok) {
+                        window.location.href = "/"
+                    }
+                });
+    }
+</script>
+</html>
