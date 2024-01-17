@@ -20,13 +20,5 @@
     {% endif %}
 </body>
 <script>
-    function goBack() {
-        fetch('/reset_username', { method: 'POST' })
-                .then((response) => {
-                    if (response.ok) {
-                        window.location.href = "/"
-                    }
-                });
-    }
 </script>
 </html>

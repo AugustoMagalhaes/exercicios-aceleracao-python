@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template
 
-app = Flask(__name__ )
+app = Flask(__name__)
 
 movies = [
     {"title": "A vida é bela", "year": 1999},
