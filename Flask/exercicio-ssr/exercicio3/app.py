@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 
-app = Flask(__name__)
+app = Flask(__name__ )
 
 movies = [
     {"title": "A vida é bela", "year": 1999},
@@ -12,9 +12,6 @@ movies = [
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # global movies
-    # movies = request.form.get('username')
-
     return render_template('index.html', movies=movies)
 
 
