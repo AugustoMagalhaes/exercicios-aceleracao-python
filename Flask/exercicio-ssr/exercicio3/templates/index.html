@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Filmes</title>
+</head>
+<body>
+    <h1>Lista de Filmes</h1>
+    <ul style="flex-flow: column nowrap; width: 100%; margin: 10px">
+        {% for movie in movies %}
+        <li>{{movie['title']}} - {{movie['year']}}</li>
+        {% endfor %}
+    </ul>
+    </div>
+    
+</body>
+<script>
+</script>
+</html>
