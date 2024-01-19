@@ -10,12 +10,15 @@
     <form action="/" method="post">
         <label for="product">
             <input type="text" name="product" id="product" placeholder="Adicione um produto...">
-            <button type="submit">Adicionar Produto</button>
         </label>
+        <button type="submit">Adicionar Produto</button>
     </form>
     <ul style="flex-flow: column nowrap; width: 100%; margin: 10px">
         {% for product in products %}
         <li>{{product | safe | trim}}</li>
+        <form method="POST" action="{{ url_for('delete_product', product=product) }}">
+            <button type="submit">Excluir</button>
+        </form>
         {% endfor %}
     </ul>
     </div>
