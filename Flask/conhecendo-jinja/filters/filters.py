@@ -1,10 +1,11 @@
 from jinja2 import Environment, FileSystemLoader
-from custom_filters import convert_date
+from custom_filters import convert_date, replace_text
 
 loader = FileSystemLoader('filters')
 
 environment = Environment(loader=loader)
 environment.filters['convert_date'] = convert_date
+environment.filters['replace_text'] = replace_text
 template = environment.get_template('filters.html')
 
 
