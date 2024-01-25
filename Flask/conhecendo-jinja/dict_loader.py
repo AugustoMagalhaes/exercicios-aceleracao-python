@@ -1,4 +1,4 @@
-from jinja2 import BaseLoader, Environment
+from jinja2 import BaseLoader, Environment, TemplateNotFound
 
 
 class DictLoader(BaseLoader):
@@ -9,7 +9,7 @@ class DictLoader(BaseLoader):
         if template in self.templates:
             source = self.templates[template]
             return source, None, lambda: False
-        return None
+        raise TemplateNotFound(template)
 
 
 templates = {
